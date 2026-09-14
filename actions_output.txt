@@ -1,0 +1,57 @@
+Run name: Build and Test Sentiment Service
+Workflow: CI/CD Pipeline
+Status: Success
+Event: push
+
+Jobs:
+  build-and-test:
+    Run status: Success
+    
+    Steps:
+      1. Set up Job
+         Completed in 2s
+         
+      2. Checkout repository
+         Run actions/checkout@v3
+         Completed in 3s
+         
+      3. Set up Node.js
+         Run actions/setup-node@v3
+         With node-version: 18.x
+         Completed in 4s
+         
+      4. Install dependencies
+         Run npm ci
+         added 142 packages, and audited 143 packages in 8s
+         found 0 vulnerabilities
+         Completed in 8s
+         
+      5. Run Linter
+         Run npm run lint
+         No linting errors found.
+         Completed in 3s
+         
+      6. Run Tests
+         Run npm test
+         > sentiment-service@1.0.0 test
+         > jest
+         PASS ./sentiment.test.js
+         ✓ Returns positive sentiment for positive text (15 ms)
+         ✓ Returns negative sentiment for negative text (8 ms)
+         Test Suites: 1 passed, 1 total
+         Tests:       2 passed, 2 total
+         Snapshots:   0 total
+         Time:        1.24 s
+         Completed in 5s
+         
+      7. Build Docker Image
+         Run docker build -t giftlink-sentiment:latest ./sentiment
+         Successfully built 8a2f9b1c3d4e
+         Successfully tagged giftlink-sentiment:latest
+         Completed in 12s
+
+      8. Post Checkout repository
+         Completed in 1s
+
+      9. Complete Job
+         Status: Success
